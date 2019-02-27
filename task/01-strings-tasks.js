@@ -2,7 +2,7 @@
 /** *****************************************************************************************
  *                                                                                          *
  * Plese read the following tutorial before implementing tasks:                             *
- * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String  *
+ * https://developer.mozilla.org/en-US/docs/Web/JavaSc0ript/Reference/Global_Objects/String  *
  *                                                                                          *
  ********************************************************************************************/
 
@@ -20,7 +20,7 @@
  *   '',  'bb'  => 'bb'
  */
 function concatenateStrings(value1, value2) {
-  throw new Error('Not implemented');
+  return value1 + value2;
 }
 
 /**
@@ -35,7 +35,7 @@ function concatenateStrings(value1, value2) {
  *   ''      => 0
  */
 function getStringLength(value) {
-  throw new Error('Not implemented');
+  return value.length;
 }
 
 /**
@@ -52,7 +52,7 @@ function getStringLength(value) {
  *   'Chuck','Norris'  => 'Hello, Chuck Norris!'
  */
 function getStringFromTemplate(firstName, lastName) {
-  throw new Error('Not implemented');
+  return 'Hello, ' + firstName + ' ' + lastName + '!';
 }
 
 /**
@@ -66,7 +66,7 @@ function getStringFromTemplate(firstName, lastName) {
  *   'Hello, Chuck Norris!' => 'Chuck Norris'
  */
 function  extractNameFromTemplate(value) {
-  throw new Error('Not implemented');
+  return value.substr(alue.indexOf(' ') + 1, value.length - 1);
 }
 
 
@@ -81,7 +81,7 @@ function  extractNameFromTemplate(value) {
  *   'cat'       => 'c'
  */
 function getFirstChar(value) {
-  throw new Error('Not implemented');
+  return value.charAt(0);
 }
 
 /**
@@ -96,7 +96,7 @@ function getFirstChar(value) {
  *   '\tHello, World! ' => 'Hello, World!'
  */
 function removeLeadingAndTrailingWhitespaces(value) {
-  throw new Error('Not implemented');
+  return value.trim();
 }
 
 /**
@@ -111,7 +111,7 @@ function removeLeadingAndTrailingWhitespaces(value) {
  *   'cat', 3 => 'catcatcat'
  */
 function repeatString(value, count) {
-  throw new Error('Not implemented');
+  return value.repeat(count);
 }
 
 /**
@@ -127,7 +127,7 @@ function repeatString(value, count) {
  *   'ABABAB','BA' => 'ABAB'
  */
 function removeFirstOccurrences(str, value)  {
-  throw new Error('Not implemented');
+  return str.replace(value, '');
 }
 
 /**
@@ -142,7 +142,7 @@ function removeFirstOccurrences(str, value)  {
  *   '<a>' => 'a'
  */
 function unbracketTag(str) {
-  throw new Error('Not implemented');
+  return str.substr(1, str.length - 2);
 }
 
 
@@ -157,7 +157,7 @@ function unbracketTag(str) {
  *  'abcdefghijklmnopqrstuvwxyz' => 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
  */
 function convertToUpperCase(str) {
-  throw new Error('Not implemented');
+  return str.toUpperCase();
 }
 
 /**
@@ -172,7 +172,7 @@ function convertToUpperCase(str) {
  *   'info@gmail.com' => ['info@gmail.com']
  */
 function extractEmails(str) {
-  throw new Error('Not implemented');
+  return str.split(';');
 }
 
 /**
@@ -199,7 +199,10 @@ function extractEmails(str) {
  *
  */
 function getRectangleString(width, height) {
-  throw new Error('Not implemented');
+  let strUp = '┌' + '─'.repeat(width -2) + '┐\n',
+      strMidle = '│' + ' '.repeat(width - 2) + '│\n',
+      strDown = '└' + '─'.repeat(width - 2) + '┘\n';
+  return strUp + strMidle.repeat(height - 2) + strDown;
 }
 
 
@@ -220,7 +223,7 @@ function getRectangleString(width, height) {
  *
  */
 function encodeToRot13(str) {
-  throw new Error('Not implemented');
+  str.split('').map((el) => el.charCodeAt(el.codePointAt() + 13));
 }
 
 /**
@@ -237,7 +240,7 @@ function encodeToRot13(str) {
  *   isString(new String('test')) => true
  */
 function isString(value) {
-  throw new Error('Not implemented');
+  return (typeof (value) === 'string' || value instanceof String)? true : false;
 }
 
 
@@ -265,9 +268,47 @@ function isString(value) {
  *   'Q♠' => 50
  *   'K♠' => 51
  */
+
+
 function getCardId(value) {
-  throw new Error('Not implemented');
+  let rez = 0,
+      cardsInLine = 13,
+      pos = 0;
+  if(isNaN(value.charAt(pos))) {
+    switch(value.charAt(pos++)) {
+      case 'J':
+        rez += 10;
+        break;
+      case 'Q':
+        rez += 11;
+        break;
+      case 'K':
+        rez += 12;
+        break;
+    }
+  }
+  else {
+    if (value.charAt(pos) == 1) {
+      pos = 2;
+      rez += 9;
+    }
+    else
+      rez += Number(value.charAt(pos++)) - 1;
+  }
+  switch(value.charAt(pos)) {
+    case '♦':
+      rez += cardsInLine * 1;
+      break;
+    case '♥':
+      rez += cardsInLine * 2;
+      break;
+    case '♠':
+      rez += cardsInLine * 3;
+      break;
+  }
+  return rez;
 }
+
 
 module.exports = {
   concatenateStrings: concatenateStrings,
