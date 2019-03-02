@@ -66,7 +66,7 @@ function getStringFromTemplate(firstName, lastName) {
  *   'Hello, Chuck Norris!' => 'Chuck Norris'
  */
 function  extractNameFromTemplate(value) {
-  return value.substr(alue.indexOf(' ') + 1, value.length - 1);
+  throw new Error('Not implemented');
 }
 
 
@@ -223,7 +223,7 @@ function getRectangleString(width, height) {
  *
  */
 function encodeToRot13(str) {
-  str.split('').map((el) => el.charCodeAt(el.codePointAt() + 13));
+  throw new Error('Not implemented');
 }
 
 /**

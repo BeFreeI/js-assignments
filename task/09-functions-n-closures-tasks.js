@@ -64,7 +64,13 @@ function getPowerFunction(exponent) {
  *   getPolynom()      => null
  */
 function getPolynom() {
-  throw new Error('Not implemented');
+  return (x) => {
+    let rez = 0;
+    for (let i = 0, j = arguments.length - 1; i < arguments.length; j--,  i++) {
+      rez += arguments[i] * x ** j;
+    }
+    return rez;
+  }
 }
 
 
@@ -104,7 +110,7 @@ function memoize(func) {
  * retryer() => 2
  */
 function retry(func, attempts) {
-  throw new Error('Not implemented');     
+  return () => {return (func)? attempts : func};
 }
 
 
