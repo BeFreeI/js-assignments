@@ -200,8 +200,8 @@ function extractEmails(str) {
  */
 function getRectangleString(width, height) {
   const strUp = '┌' + '─'.repeat(width -2) + '┐\n',
-        strMidle = '│' + ' '.repeat(width - 2) + '│\n',
-        strDown = '└' + '─'.repeat(width - 2) + '┘\n';
+    strMidle = '│' + ' '.repeat(width - 2) + '│\n',
+    strDown = '└' + '─'.repeat(width - 2) + '┘\n';
   return strUp + strMidle.repeat(height - 2) + strDown;
 }
 
@@ -271,9 +271,9 @@ function isString(value) {
 
 
 function getCardId(value) {
-  let rez = 0,
-      cardsInLine = 13,
-      pos = 0;
+  let rez = 0;
+  const cardsInLine = 13;
+  let pos = 0;
   if(isNaN(value.charAt(pos))) {
     switch(value.charAt(pos++)) {
       case 'J':
