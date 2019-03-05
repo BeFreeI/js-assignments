@@ -70,7 +70,7 @@ function getPolynom() {
       rez += arguments[i] * Math.pow(x, j);
     }
     return rez;
-  }
+  };
 }
 
 
