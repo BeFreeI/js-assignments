@@ -31,17 +31,17 @@ function distinctLettersString(value1, value2) {
 function lowerLetters(value) {
   const rez = Object.create(null);
   rez.has = function(key) {
-    for(let i in this) {
-      if (i == key) {
+    for(const i in this) {
+      if (i === key) {
         return true;
       }
     }
     return false;
-  }
-  for(let i of value) {
+  };
+  for(const i of value) {
     if (i.toLowerCase() !== i.toUpperCase() && i === i.toLowerCase()) {
       if (rez.has(i)) {
-       rez[i] += 1;
+        rez[i] += 1;
       }
       else {
         rez[i] = 1;
@@ -92,10 +92,10 @@ function titleCaseConvert(title, minorWords) {
  */
 
 function calcRPN(expr) {
-  let postfix = expr.split(' ');
-  let num = [];
+  const postfix = expr.split(' ');
+  const num = [];
   let flag = false;
-  for(let i of postfix) {
+  for(const i of postfix) {
     if(isNaN(i)) {
       flag = true;
       break;
@@ -104,7 +104,7 @@ function calcRPN(expr) {
   if (!flag) {
     return postfix[postfix.length - 1];
   }
-  for (let i of postfix) {
+  for (const i of postfix) {
     let a, b;
     if(!isNaN(i)) {
       num.push(Number(i));
