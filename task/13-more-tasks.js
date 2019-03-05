@@ -31,17 +31,21 @@ function distinctLettersString(value1, value2) {
 function lowerLetters(value) {
   const rez = Object.create(null);
   rez.has = function(key) {
-    for(let i in this)
-      if (i == key)
+    for(let i in this) {
+      if (i == key) {
         return true;
+      }
+    }
     return false;
   }
   for(let i of value) {
     if (i.toLowerCase() !== i.toUpperCase() && i === i.toLowerCase()) {
-      if (rez.has(i))
+      if (rez.has(i)) {
        rez[i] += 1;
-      else
+      }
+      else {
         rez[i] = 1;
+      }
     }
   }
   delete rez.has;
@@ -91,42 +95,44 @@ function calcRPN(expr) {
   let postfix = expr.split(' ');
   let num = [];
   let flag = false;
-  for(i of postfix) {
+  for(let i of postfix) {
     if(isNaN(i)) {
       flag = true;
       break;
     }
   }
-  if (!flag)
+  if (!flag) {
     return postfix[postfix.length - 1];
+  }
   for (let i of postfix) {
     let a, b;
-    if(!isNaN(i))
+    if(!isNaN(i)) {
       num.push(Number(i));
+    }
     else {
       switch(i) {
-        case '+':
-            a = num.pop();
-            b = num.pop();
-            num.push(a + b);
-          break;
-        case '*':
-          a = num.pop();
-          b = num.pop();
-          num.push(a * b);
-          break;
-        case '-':
-          a = num.pop();
-          b = num.pop();
-          num.push(b - a);
-          break;
-        case '/':
-          a = num.pop();
-          b = num.pop();
-          num.push(b / a);
-          break;
-        default:
-          break;
+      case '+':
+        a = num.pop();
+        b = num.pop();
+        num.push(a + b);
+        break;
+      case '*':
+        a = num.pop();
+        b = num.pop();
+        num.push(a * b);
+        break;
+      case '-':
+        a = num.pop();
+        b = num.pop();
+        num.push(b - a);
+        break;
+      case '/':
+        a = num.pop();
+        b = num.pop();
+        num.push(b / a);
+        break;
+      default:
+        break;
       }
     }
   }
