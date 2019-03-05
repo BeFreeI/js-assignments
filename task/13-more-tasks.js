@@ -12,7 +12,7 @@
  *   'abcdefghijklmnop',  'lmnopqrstuvwxyz'  => 'abcdefghijklmnopqrstuvwxyz'
  */
 function distinctLettersString(value1, value2) {
-  throw new Error('Not implemented');
+  return value1.concat(value2).split('').sort().join('');
 }
 
 
@@ -29,7 +29,23 @@ function distinctLettersString(value1, value2) {
  */
 
 function lowerLetters(value) {
-  throw new Error('Not implemented');
+  const rez = Object.create(null);
+  rez.has = function(key) {
+    for(let i in this)
+      if (i == key)
+        return true;
+    return false;
+  }
+  for(let i of value) {
+    if (i.toLowerCase() !== i.toUpperCase() && i === i.toLowerCase()) {
+      if (rez.has(i))
+       rez[i] += 1;
+      else
+        rez[i] = 1;
+    }
+  }
+  delete rez.has;
+  return rez;
 }
 
 /**
@@ -72,7 +88,49 @@ function titleCaseConvert(title, minorWords) {
  */
 
 function calcRPN(expr) {
-  throw new Error('Not implemented');
+  let postfix = expr.split(' ');
+  let num = [];
+  let flag = false;
+  for(i of postfix) {
+    if(isNaN(i)) {
+      flag = true;
+      break;
+    }
+  }
+  if (!flag)
+    return postfix[postfix.length - 1];
+  for (let i of postfix) {
+    let a, b;
+    if(!isNaN(i))
+      num.push(Number(i));
+    else {
+      switch(i) {
+        case '+':
+            a = num.pop();
+            b = num.pop();
+            num.push(a + b);
+          break;
+        case '*':
+          a = num.pop();
+          b = num.pop();
+          num.push(a * b);
+          break;
+        case '-':
+          a = num.pop();
+          b = num.pop();
+          num.push(b - a);
+          break;
+        case '/':
+          a = num.pop();
+          b = num.pop();
+          num.push(b / a);
+          break;
+        default:
+          break;
+      }
+    }
+  }
+  return num.pop();
 }
 
 module.exports = {
