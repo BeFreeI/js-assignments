@@ -305,7 +305,7 @@ function get3TopItems(arr) {
  *   [ 1, '2' ] => 1
  */
 function getPositivesCount(arr) {
-  return arr.filter(el => el > 0).length;
+  throw new Error('Not implemented');
 }
 
 /**
