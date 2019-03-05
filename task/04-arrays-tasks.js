@@ -132,7 +132,7 @@ function getUpperCaseStrings(arr) {
  *    [ 'angular', 'react', 'ember' ] => [ 7, 5, 5 ]
  */
 function getStringsLength(arr) {
-  return arr.map(el => el.length});
+  return arr.map(el => el.length);
 }
 
 /**
