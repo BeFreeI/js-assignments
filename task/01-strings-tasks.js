@@ -200,8 +200,8 @@ function extractEmails(str) {
  */
 function getRectangleString(width, height) {
   const strUp = '┌' + '─'.repeat(width -2) + '┐\n',
-            strMidle = '│' + ' '.repeat(width - 2) + '│\n',
-        strDown = '└' + '─'.repeat(width - 2) + '┘\n';
+    strMidle = '│' + ' '.repeat(width - 2) + '│\n',
+    strDown = '└' + '─'.repeat(width - 2) + '┘\n';
   return strUp + strMidle.repeat(height - 2) + strDown;
 }
 
@@ -276,35 +276,36 @@ function getCardId(value) {
   let pos = 0;
   if(isNaN(value.charAt(pos))) {
     switch(value.charAt(pos++)) {
-      case 'J':
-        rez += 10;
-        break;
-      case 'Q':
-        rez += 11;
-        break;
-      case 'K':
-        rez += 12;
-        break;
+    case 'J':
+      rez += 10;
+      break;
+    case 'Q':
+      rez += 11;
+      break;
+    case 'K':
+      rez += 12;
+      break;
     }
   }
   else {
-    if (value.charAt(pos) == 1) {
+    if (value.charAt(pos) === 1) {
       pos = 2;
       rez += 9;
     }
-    else
+    else {
       rez += Number(value.charAt(pos++)) - 1;
+    }
   }
   switch(value.charAt(pos)) {
-    case '♦':
-      rez += cardsInLine * 1;
-      break;
-    case '♥':
-      rez += cardsInLine * 2;
-      break;
-    case '♠':
-      rez += cardsInLine * 3;
-      break;
+  case '♦':
+    rez += cardsInLine * 1;
+    break;
+  case '♥':
+    rez += cardsInLine * 2;
+    break;
+  case '♠':
+    rez += cardsInLine * 3;
+    break;
   }
   return rez;
 }
