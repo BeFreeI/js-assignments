@@ -305,7 +305,7 @@ function get3TopItems(arr) {
  *   [ 1, '2' ] => 1
  */
 function getPositivesCount(arr) {
-  return arr.filter(el => (typeof el === "number") && el > 0).length;
+  return arr.filter(el => (typeof el === 'number') && el > 0).length;
 }
 
 /**
@@ -354,7 +354,7 @@ function getItemsSum(arr) {
  *  [ null, undefined, NaN, false, 0, '' ]  => 6
  */
 function getFalsyValuesCount(arr) {
-  return arr.filter(el => !Boolean(el)).length;
+  return arr.filter(el => !el).length;
 }
 
 /**
