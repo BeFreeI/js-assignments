@@ -32,7 +32,16 @@
  *
  */
 function* get99BottlesOfBeer() {
-  throw new Error('Not implemented');
+  for(let i = 99; i > 2; i--) {
+    yield `${i} bottles of beer on the wall, ${i} bottles of beer.`;
+    yield `Take one down and pass it around, ${i - 1} bottles of beer on the wall.`
+  }
+  yield '2 bottles of beer on the wall, 2 bottles of beer.';
+  yield 'Take one down and pass it around, 1 bottle of beer on the wall.';
+  yield '1 bottle of beer on the wall, 1 bottle of beer.';
+  yield 'Take one down and pass it around, no more bottles of beer on the wall.';
+  yield 'No more bottles of beer on the wall, no more bottles of beer.';
+  yield 'Go to the store and buy some more, 99 bottles of beer on the wall.';
 }
 
 
@@ -46,7 +55,15 @@ function* get99BottlesOfBeer() {
  *
  */
 function* getFibonacciSequence() {
-  throw new Error('Not implemented');
+  let rez = 0, first = 0, second = 1;
+  yield 0;
+  yield 1;
+  while(true) {
+    rez = first + second;
+    yield rez;
+    first = second;
+    second = rez;
+  }
 }
 
 
@@ -97,7 +114,7 @@ function* depthTraversalTree(root) {
  * @example
  *     source tree (root = 1):
  *
- *            1
+ *            1  
  *          / | \
  *         2  3  4
  *        / \     \            =>    { 1, 2, 3, 4, 5, 6, 7, 8 }
@@ -107,9 +124,14 @@ function* depthTraversalTree(root) {
  *
  */
 function* breadthTraversalTree(root) {
-  throw new Error('Not implemented');
+  let tree = [root];
+  for(const node of tree) {
+    yield node;
+    if (node.children) {
+      for(const i of node.children) tree.push(i);
+    }
+  }
 }
-
 
 /**
  * Merges two yield-style sorted sequences into the one sorted sequence.
@@ -125,7 +147,18 @@ function* breadthTraversalTree(root) {
  *   [ 1, 3, 5, ... ], [ -1 ] => [ -1, 1, 3, 5, ...]
  */
 function* mergeSortedSequences(source1, source2) {
-  throw new Error('Not implemented');
+  const it1 = source1(),
+    it2 = source2();
+  let num1 = it1.next(),
+    num2 = it2.next();
+  while(!num1.done && !num2.done) {
+    yield Math.min(num1.value, num2.value);
+    yield Math.max(num1.value, num2.value);
+    num1 = it1.next();
+    num2 = it2.next();
+  }
+  yield (num1.done)? num2.value : num1.value;
+  yield* (num1.done)? it2 : it1;
 }
 
 module.exports = {

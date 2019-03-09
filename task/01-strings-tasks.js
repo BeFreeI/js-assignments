@@ -66,7 +66,7 @@ function getStringFromTemplate(firstName, lastName) {
  *   'Hello, Chuck Norris!' => 'Chuck Norris'
  */
 function  extractNameFromTemplate(value) {
-  throw new Error('Not implemented');
+  return value.slice('Hello, '.length, -'!'.length);
 }
 
 
@@ -240,7 +240,7 @@ function encodeToRot13(str) {
  *   isString(new String('test')) => true
  */
 function isString(value) {
-  return (typeof (value) === 'string' || value instanceof String)? true : false;
+  return (typeof value === 'string' || value instanceof String);
 }
 
 
@@ -271,9 +271,10 @@ function isString(value) {
 
 
 function getCardId(value) {
-  throw new Error('Not implemented');
+  const rank = 'A234567891JQK';
+  const suit = '♣♦♥♠';
+  return (rank.indexOf(value[0]) + 13 * suit.indexOf(value.slice(-1)));
 }
-
 
 module.exports = {
   concatenateStrings: concatenateStrings,
