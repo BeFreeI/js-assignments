@@ -12,7 +12,9 @@
  *   'abcdefghijklmnop',  'lmnopqrstuvwxyz'  => 'abcdefghijklmnopqrstuvwxyz'
  */
 function distinctLettersString(value1, value2) {
-  throw new Error('Not implemented');
+  return (value1 + value2).split('').filter((el, index, arr) => {
+    return arr.indexOf(el) === index;
+  }).sort().join('');
 }
 
 
