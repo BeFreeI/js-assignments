@@ -323,7 +323,7 @@ function getPositivesCount(arr) {
  *   [ 'one','one','one','zero' ]     => [ 'zero','one','one','one' ]
  */
 function sortDigitNamesByNumericOrder(arr) {
-  let nums ='zeroonetwothreefourfivesixseveneightnine';
+  const nums ='zeroonetwothreefourfivesixseveneightnine';
   return arr.sort((a, b) => (nums.indexOf(a) > nums.indexOf(b)? 1 : -1));
 }
 
@@ -451,7 +451,7 @@ function getIdentityMatrix(n) {
   return new Array(n)
     .fill(new Array(n).fill(0))
     .map((out, i) => {
-      return out.map((inn, j) => (i === j)? 1 : 0)
+      return out.map((inn, j) => (i === j)? 1 : 0);
     });
 }
 
@@ -519,9 +519,9 @@ function distinct(arr) {
  */
 function group(array, keySelector, valueSelector) {
   var map = new Map();
-  array.map(el => {
-    if (map.has(keySelector(el))) map.get(keySelector(el)).push(valueSelector(el));
-    else map.set(keySelector(el), [valueSelector(el)]);
+  array.map(v => {
+    if (map.has(keySelector(v))) map.get(keySelector(v)).push(valueSelector(v));
+    else map.set(keySelector(v), [valueSelector(v)]);
   });
   return map;
 }
