@@ -447,8 +447,8 @@ function toNaryString(num, n) {
 function getCommonDirectoryPath(pathes) {
   pathes = pathes.map(el => el.split('/'));
   let rez = '';
-  for(let i in pathes[0]) {
-    let word = pathes[0][i];
+  for(cost i in pathes[0]) {
+    const word = pathes[0][i];
     if(pathes.every(el => word === el[i])) rez += word + '/';
     else return rez;
   }
@@ -535,8 +535,8 @@ function evaluateTicTacToePosition(position) {
   }       // find potencial diagonals
   rez[++k] = [];
   rez[k].push(position[0][2], position[1][1], position[2][0]);
-  let ans = rez.find(el => {       // find winner line
-    let line = el.join('');
+  const ans = rez.find(el => {       // find winner line
+    const line = el.join('');
     return line === X || line === O;
   });
   return (ans !== undefined)? ans[0] : undefined;
