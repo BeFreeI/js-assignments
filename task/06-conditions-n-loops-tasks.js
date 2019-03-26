@@ -447,7 +447,7 @@ function toNaryString(num, n) {
 function getCommonDirectoryPath(pathes) {
   pathes = pathes.map(el => el.split('/'));
   let rez = '';
-  for(cost i in pathes[0]) {
+  for(const i in pathes[0]) {
     const word = pathes[0][i];
     if(pathes.every(el => word === el[i])) rez += word + '/';
     else return rez;
