@@ -110,7 +110,16 @@ function memoize(func) {
  * retryer() => 2
  */
 function retry(func, attempts) {
-  throw new Error('Not implemented');
+  return () => {
+    while (attempts > 0) {
+      try { 
+        return func();
+      } catch (e) {
+        attempts--;
+      }
+    }
+    return func();
+  }
 }
 
 
@@ -138,7 +147,13 @@ function retry(func, attempts) {
  *
  */
 function logger(func, logFunc) {
-  throw new Error('Not implemented');
+  return function() {
+    const args = JSON.stringify(Array.from(arguments)).slice(1, -1);
+    logFunc(`${func.name}(${args}) starts`);
+    const result = func.apply(this, arguments);
+    logFunc(`${func.name}(${args}) ends`);
+    return result;
+  };
 }
 
 
@@ -156,7 +171,7 @@ function logger(func, logFunc) {
  *   partialUsingArguments(fn, 'a','b','c','d')() => 'abcd'
  */
 function partialUsingArguments(fn) {
-  throw new Error('Not implemented');
+  return (...args) => Array.from(arguments).slice(1).join('') + args.join('');
 }
 
 
