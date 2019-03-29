@@ -223,7 +223,12 @@ function getRectangleString(width, height) {
  *
  */
 function encodeToRot13(str) {
-  throw new Error('Not implemented');
+  const strEng = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz',
+    strRot = 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm';
+  return str.split('').map(el => {
+    const item = strRot[strEng.indexOf(el)];
+    return (item)? item : el;
+  }).join('');
 }
 
 /**
